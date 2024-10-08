@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
- 
   const [formData, setFormData] = useState({
     Fname: "",
     Lname: "",
@@ -13,33 +12,31 @@ function App() {
     description: ""
   });
 
-  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
 
-    const validateEmail = (email) => {
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      return emailPattern.test(email);
-    }; 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-  
-      if (!formData.Fname || !formData.Lname || !formData.tel || !formData.email || !formData.time) {
-        alert("Please fill in all required fields.");
-        return;
-      }
-  
-    
-      if (!validateEmail(formData.email)) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-  
-      
-      alert("Form submitted successfully!");
-      console.log(formData);
-  
+  const validateEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!formData.Fname || !formData.Lname || !formData.tel || !formData.email || !formData.time) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    alert("Form submitted successfully!");
+    console.log(formData);
   };
 
   return (
@@ -126,11 +123,10 @@ function App() {
           <textarea
             name="description"
             id="description"
+            placeholder="Description of what you need"
             value={formData.description}
             onChange={handleChange}
-          >
-            description what you need
-          </textarea>
+          />
           <br />
           <br />
 
@@ -141,4 +137,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
